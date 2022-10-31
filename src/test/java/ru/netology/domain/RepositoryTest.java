@@ -1,7 +1,10 @@
 package ru.netology.domain;
 
+import org.junit.jupiter.api.Assertions;
+
 import ru.netology.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class RepositoryTest {
@@ -13,6 +16,7 @@ public class RepositoryTest {
 
 
     ProductRepository repository = new ProductRepository();
+
 
     @Test
     public void shouldSave() {
@@ -38,4 +42,13 @@ public class RepositoryTest {
         Product[] expected = {item1, item2, item4, item5};
         assertArrayEquals(expected, repository.getItems());
     }
+
+    @Test
+    void shouldNotFoundRemoveProduct() {
+        Assertions.assertThrows(NotFoundException.class, () -> {
+            repository.removeById(123);
+        });
+    }
+
 }
+

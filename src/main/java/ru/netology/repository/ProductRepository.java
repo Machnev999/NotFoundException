@@ -4,8 +4,14 @@
 //4.удалять товар по id
 //5. добавить геттер для items
 
+
+//6. создать метод findById
+//7. вызвать метод findById в removeById
+
+
 package ru.netology.repository;
 
+import ru.netology.domain.NotFoundException;
 import ru.netology.domain.Product;
 
 
@@ -18,7 +24,7 @@ public class ProductRepository {
     }
 
 
-   public Product[] getItems() {
+    public Product[] getItems() {
         return products;
     }
 
@@ -40,8 +46,23 @@ public class ProductRepository {
         return products;
     }
 
+    public Product findById(int id) {
+        for (Product product : products) {
+            if (product.getId() == id) { // перебираем и сверяем есть ли такой id.при отсутствие возвращем null
+                return product;
+            }
+        }
+        return null;
+    }
+
     //удаление по id
     public Product[] removeById(int id) {
+        if (findById(id) == null) {
+            throw new NotFoundException(
+
+                    "Element with id: " + id + " not found"
+            );
+        }
         int length = products.length - 1;
         Product[] tmp = new Product[length];
         int index = 0;
