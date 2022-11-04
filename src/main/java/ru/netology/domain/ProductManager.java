@@ -5,11 +5,12 @@
 //5.создать метод matches для определения соответствия товара product запросу search
 package ru.netology.domain;
 
+import ru.netology.repository.ProductRepository;
 
 public class ProductManager {
-    protected ru.netology.repository.ProductRepository repository;  // поле типа репозиторий
+    protected ProductRepository repository;  // поле типа репозиторий
 
-    public ProductManager(ru.netology.repository.ProductRepository repository) { // конструктор с параметором репозитория
+    public ProductManager(ProductRepository repository) { // конструктор с параметором репозитория
         this.repository = repository;
     }
 
